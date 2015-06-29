@@ -8,7 +8,13 @@ var path = require('path'),
 // Grab environment variables specified in Procfile or as Heroku config vars
     username = process.env.USERNAME,
     password = process.env.PASSWORD,
+
+    // Should default to localhost so that developers can do local testing
+    // You MUST set the environment variable BACKEND_SUBMIT_URL to something
+    // like https://rcmserver.herokuapp.com/submitEvidence  or
+    // https://alphagov-rcmserver.herokuapp.com/submitEvidence
     submitEvidenceUrl = process.env.BACKEND_SUBMIT_URL || 'http://localhost:9292/submitEvidence'
+
     env = process.env.NODE_ENV || 'development';
 
 // Authenticate against the environment-provided credentials, if running
@@ -98,7 +104,7 @@ function readJsonFromRequest(req, completeCallback) {
  * This makes a call to the server and then returns any response back to the client
  * TODO: This needs ALOT of tidying up!
  * TODO: This needs tests!
- * TODO: This needs someone competent to have written it!
+ * TODO: This needs someone competent to have written it! (Don't let Fiona lose on your valuable node.js projects ;-))
  */
 app.post('/submitEvidence', function(req, res) {
     console.log('Submitting evidence ...');

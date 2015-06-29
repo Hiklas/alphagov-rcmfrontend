@@ -17,29 +17,33 @@ module.exports = {
     });
 
     // add your routes here
+
+
+
     app.get('/rcm', function (req, res) {
-      res.render('rcm/index');
+      res.redirect('rcm/report-benefit-fraud');
     });
-    app.get('/rcm/apptest1', function (req, res) {
-      res.render('rcm/apptest1');
+    app.get('/rcm/report-benefit-fraud', function (req, res) {
+      res.render('rcm/report-benefit-fraud');
     });
     app.get('/rcm/dummy', function (req, res) {
       res.render('rcm/dummy');
     });
 
-    // 1. Type of fraud
-    app.get('/rcm/type-of-fraud', function (req, res) {
-      res.render('rcm/type-of-fraud', {
+    // 1. Identify suspect
+    app.post('/rcm/identify-suspect', function (req, res) {
+      res.render('rcm/identify-suspect', {
         'previousPage': 'index'
       });
     });
 
-    // 2. Identify suspect
-    app.post('/rcm/identify-suspect', function (req, res) {
-      res.render('rcm/identify-suspect', {
-        'previousPage': 'type-of-fraud'
+    // 2. Type of fraud
+    app.get('/rcm/type-of-fraud', function (req, res) {
+      res.render('rcm/type-of-fraud', {
+        'previousPage': 'identify-suspect'
       });
     });
+
 
     // 3. Identify partner
     app.post('/rcm/identify-partner', function (req, res) {
@@ -51,7 +55,7 @@ module.exports = {
     // 4. Employment prompt
     app.post('/rcm/employment-prompt', function (req, res) {
       res.render('rcm/employment-prompt', {
-        'previousPage': 'identify-suspect'
+        'previousPage': 'identify-partner'
       });
     });
 
@@ -70,8 +74,8 @@ module.exports = {
     });
 
     // 6. employment suspect + partner
-    app.post('/rcm/employment-suspect-partner', function (req, res) {
-      res.render('rcm/employment-suspect-partner', {
+    app.post('/rcm/employment-suspect-and-partner', function (req, res) {
+      res.render('rcm/employment-suspect-and-partner', {
         'previousPage': 'employment-prompt'
       });
     });
